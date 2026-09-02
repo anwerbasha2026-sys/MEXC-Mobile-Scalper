@@ -1,4 +1,4 @@
-شname: Build MEXC Mobile Scalper APK
+name: Build MEXC Mobile Scalper APK
 
 on:
   workflow_dispatch:
