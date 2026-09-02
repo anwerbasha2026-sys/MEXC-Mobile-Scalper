@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repository
@@ -23,25 +23,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libffi-dev libssl-dev cmake
           pip install --upgrade pip setuptools
-          pip install buildozer cython
-
-      - name: Setup Android Command-line Tools & Fix Paths
-        run: |
-          # 1. إنشاء المجلدات المطلوبة
-          mkdir -p ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest
-          mkdir -p ~/.buildozer/android/platform/android-sdk/tools/bin
-
-          # 2. تنزيل commandlinetools الرسمية من جوجل
-          curl -o cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-          unzip -q cmdline-tools.zip
-          mv cmdline-tools/* ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/
-          rm -rf cmdline-tools cmdline-tools.zip
-
-          # 3. حل مشكلة المسار القديم بإنشاء Symlink للـ sdkmanager
-          ln -s ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager
-
-          # 4. قبول التراخيص مسبقاً
-          yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=/home/runner/.buildozer/android/platform/android-sdk --licenses || true
+          pip install "buildozer>=1.5.0" "cython<3.0.0"
 
       - name: Build APK with Buildozer
         run: |
@@ -50,5 +32,5 @@ jobs:
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: python-app-apk
+          name: MEXC-Mobile-Scalper-APK
           path: bin/*.apk
