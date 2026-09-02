@@ -1,0 +1,44 @@
+# MEXC Mobile Scalper - WSL2 APK Build
+
+## 1) Install WSL2
+On Windows PowerShell as Administrator:
+
+    wsl --install -d Ubuntu
+
+Restart Windows if requested, then open Ubuntu.
+
+## 2) Put this project inside Ubuntu
+The easiest method is to extract the ZIP in Windows, then access it from WSL through `/mnt/c/...`.
+
+Example:
+
+    cd /mnt/c/Users/YOUR_NAME/Downloads/MEXC_Mobile_Scalper_Pro
+
+## 3) Run the setup script
+
+    chmod +x setup_wsl.sh build_apk.sh
+    ./setup_wsl.sh
+
+## 4) Build the APK
+
+    source .venv/bin/activate
+    ./build_apk.sh
+
+The first build can take a long time because Buildozer downloads Android build components.
+
+## 5) Find the APK
+
+After a successful build:
+
+    ls -lh bin/*.apk
+
+The APK is normally inside:
+
+    bin/
+
+Copy it back to Windows with File Explorer, or from WSL:
+
+    cp bin/*.apk /mnt/c/Users/YOUR_NAME/Desktop/
+
+## Important
+This project contains live MEXC trading functions. Test carefully and use API keys with withdrawals disabled. The APK should not be treated as a paper-trading app unless the order functions are changed accordingly.
