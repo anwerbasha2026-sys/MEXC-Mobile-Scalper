@@ -7,7 +7,7 @@ source.include_exts = py,png,jpg,kv,db
 version = 1.0
 
 # المكونات المضافة لضمان استقرار البناء
-requirements = python3, kivy, cython==0.29.36, requests, urllib3, certifi, idna, chardet
+requirements = python3.11.9, kivy, cython==0.29.36, requests, urllib3, certifi, idna, chardet
 orientation = portrait
 fullscreen = 0
 
